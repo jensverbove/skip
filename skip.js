@@ -1,4 +1,4 @@
-// Change this value depending on how long it takes your browser to load each video, current value is equal to 4 seconds.
+// Change this value depending on how long it takes your browser to load each video, current value is equal to 3 seconds.
 const loadTime = 3000;
 
 let clickAndSkip = async (link) => {
