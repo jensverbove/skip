@@ -1,5 +1,5 @@
 // Change this value depending on how long it takes your browser to load each video, current value is equal to 4 seconds.
-const loadTime = 4000;
+const loadTime = 3000;
 
 let clickAndSkip = async (link) => {
 
@@ -13,47 +13,6 @@ let clickAndSkip = async (link) => {
     if (noCodingPlease) {
 
         await new Promise((resolve) => setTimeout(resolve, loadTime));
-
-        let quizTime = link
-            .querySelector('[data-purpose="item-title"]')
-            .innerText.toLowerCase()
-            .includes("quiz");
-
-        if (quizTime) {
-            console.log("Quiz time!");
-
-            continueButton = document.querySelector(
-                '[data-purpose="start-or-resume-quiz"]'
-            );
-            if (continueButton != null) {
-                continueButton.click();
-            }
-
-            await new Promise((resolve) => setTimeout(resolve, 500));
-
-            while (document.querySelector('[data-purpose="go-to-next"]') == null) {
-                answers = document.getElementsByClassName(
-                    "mc-quiz-question--answer--eCdL3"
-                );
-                nextButton = document.querySelector(
-                    '[data-purpose="next-question-button"]'
-                );
-                for (let answer of Array.from(answers)) {
-                    answer.getElementsByTagName("input")[0].click();
-                    await new Promise((resolve) => setTimeout(resolve, 500));
-                    nextButton.click();
-                    await new Promise((resolve) => setTimeout(resolve, 500));
-                    correct = nextButton.innerText.toLowerCase().includes("next");
-
-                    if (correct) {
-                        console.log("Correct!");
-                        nextButton.click();
-                        break;
-                    }
-                }
-            }
-            document.querySelector('[data-purpose="go-to-next"]').click();
-        }
 
         video = document.getElementsByTagName("video")[0];
         if (video != undefined) {
